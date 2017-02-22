@@ -1,53 +1,49 @@
-<?php
+<?php 
 
-$connection = new mysqli('localhost','root','','compass_api') or die ("Database connection failed");
+ $connection = new mysqli('localhost','root','','compass_api') or die ("Database connection failed");
 
-if (isset($_POST['upload']))
+if (isset ($_POST['submit']))
 {
-    $target = "images/".basename($_FILES['image']['name']);
+    $image = mysqli_real_escape_string($connection,$_POST['name']);
+    $title = mysqli_real_escape_string($connection,$_POST['emta']);
+    $text = mysqli_real_escape_string($connection,$_POST['fen']);
     
-    $image = $_FILES['image']['name'];
-    $title = mysqli_real_escape_string($connection,$_POST['title']);
-    $text = mysqli_real_escape_string($connection,$_POST['text']);
-    
-    $sql = "INSERT INTO news (title, image, text) VALUES ('$title', '$image', '$text')";
-    
+    $sql = "insert into news (title, image, text) VALUES ('$title', '$image', '$text')";
     $query = mysqli_query($connection,$sql);
     
     if (!$query)
     {
         die ('Query FAILED' . mysqli_error());
     }
-    else 
-        echo "Done";
-    
 }
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Upload News</title>
+    <meta charset="UTF-8">
+    <title>Add News Page</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <link rel="shortcut icon" href="compass.jpg">
-</head>
+    </head>
 <body>
-    <div id="content">
-<form action="add_news.php" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="size" value="1000000">
-    <div style="text-align: center; margin: 18px 0;">
-        <input type="file" name="image" required>
+
+<h2>Add News Form</h2>
+
+    <form action="add_news.php" method="post">
+        <div class="container">
+            <label for="name"><b>Link of Image</b></label>
+            <input type="name" placeholder="Enter Link of Image" name="name" required>
+        
+              <label for="emta"><b>Title of News</b></label>
+            <input type="emta" placeholder="Enter Title of News" name="emta" required>
+            
+            <label for="fen"><b>Description</b></label>
+            <input type="fen" placeholder="Enter Description of News" name="fen" required>
+          
+          <button type="submit" name="submit"> Done </button>
+            
         </div>
-     <div style="text-align: center; margin: 18px 0;">
-        <input name="title" placeholder="Add Title ..." size="38px" required/>
-        </div>
-    <div style="text-align: center; margin: 18px 0;">
-        <textarea name="text" cols="40" rows="4" placeholder="Say something about this image ..." required></textarea>
-        </div>
-    <div style="text-align: center; margin: 18px 0;">
-        <input type="submit" name="upload" value="Upload Image">
-        </div>
-</form>
-        </div>
+        </form>
 </body>
 </html>
