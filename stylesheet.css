@@ -13,6 +13,15 @@ input[type=name], input[type=emta], input[type=fen] {
     box-sizing: border-box;
 }
 
+input[type=image], input[type=title], input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
 h2{
     text-align: center;
     color: #4CAF50;
