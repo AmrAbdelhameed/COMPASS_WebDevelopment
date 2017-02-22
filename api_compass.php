@@ -16,7 +16,6 @@ if (mysqli_connect_errno())
         die ('Query FAILED' . mysqli_error()); 
     }
 
-    
  while ($row = mysqli_fetch_assoc($result)) {
     $output[]=$row;
 }
