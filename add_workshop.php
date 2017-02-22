@@ -48,8 +48,6 @@ if (isset ($_POST['submit']))
     {
         die ('Query FAILED' . mysqli_error());
     }
-    else 
-        echo "Done";
     }
 }
 ?>
@@ -68,13 +66,13 @@ if (isset ($_POST['submit']))
     <form action="add_workshop.php" method="post">
         <div class="container">
             <label for="name"><b>Name</b></label>
-            <input type="name" placeholder="Enter Name" name="name" required>
+            <input type="name" placeholder="Enter Name Workshop" name="name" required>
         
               <label for="emta"><b>When</b></label>
-            <input type="emta" placeholder="Enter emta" name="emta" required>
+            <input type="emta" placeholder="Enter When" name="emta" required>
             
             <label for="fen"><b>Where</b></label>
-            <input type="fen" placeholder="Enter fen" name="fen" required>
+            <input type="fen" placeholder="Enter Where" name="fen" required>
           
           <button type="submit" name="submit"> Done </button>
             
